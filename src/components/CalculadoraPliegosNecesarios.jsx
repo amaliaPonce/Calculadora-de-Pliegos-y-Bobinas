@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function CalculadoraPliegosNecesarios(props) {
-  const { resultadoHorizontal, resultadoVertical } = props;
-
+function CalculadoraPliegosNecesarios({ resultadoHorizontal, resultadoVertical, onPliegosNecesariosChange }) {
   const [cantidadTarjetas, setCantidadTarjetas] = useState(0);
   const [modoCalculo, setModoCalculo] = useState('horizontal');
   const [pliegosNecesarios, setPliegosNecesarios] = useState(0);
@@ -17,10 +15,13 @@ function CalculadoraPliegosNecesarios(props) {
     } else if (modoCalculo === 'vertical' && !isNaN(resultadoV) && resultadoV !== 0) {
       setPliegosNecesarios(Math.ceil(cantidadTarjetas / resultadoV));
     }
-  }, [cantidadTarjetas, modoCalculo, resultadoHorizontal, resultadoVertical]);
 
-  console.log('Props resultadoHorizontal:', resultadoHorizontal);
-  console.log('Props resultadoVertical:', resultadoVertical);
+    // Llama a la función para actualizar "pliegosNecesarios"
+    if (onPliegosNecesariosChange) {
+      onPliegosNecesariosChange(pliegosNecesarios);
+    }
+  }, [cantidadTarjetas, modoCalculo, resultadoHorizontal, resultadoVertical, onPliegosNecesariosChange, pliegosNecesarios]);
+
 
   return (
     <div>
@@ -54,6 +55,7 @@ function CalculadoraPliegosNecesarios(props) {
 CalculadoraPliegosNecesarios.propTypes = {
   resultadoHorizontal: PropTypes.number.isRequired,
   resultadoVertical: PropTypes.number.isRequired,
+  onPliegosNecesariosChange: PropTypes.func,
 };
 
 export default CalculadoraPliegosNecesarios;
