@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import '../App.css';
+import '../index.css'
+
 
 function CalculadoraPliegos({
   onResultadosActualizados,
@@ -102,53 +105,67 @@ function CalculadoraPliegos({
 
   useEffect(() => {
     calcularTarjetasEnPliego();
-  }, [calcularTarjetasEnPliego]);
-
+  },);
+  
   return (
-    <div>
-      <h1>Calculadora de Tarjetas en Pliego</h1>
-      <div>
-        <label htmlFor="anchoPliego">Dimensiones del Pliego (mm):</label>
-        <input
-          type="number"
-          id="anchoPliego"
-          name="anchoPliego"
-          placeholder="Ancho"
-          value={dimensiones.anchoPliego}
-          onChange={handleInputChange}
-        />
-        x
-        <input
-          type="number"
-          id="altoPliego"
-          name="altoPliego"
-          placeholder="Alto"
-          value={dimensiones.altoPliego}
-          onChange={handleInputChange}
-        />
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Calculadora de Tarjetas en Pliego</h1>
+      <div className="mb-4">
+        <label htmlFor="anchoPliego" className="block mb-2">
+          Dimensiones del Pliego (mm):
+        </label>
+        <div className="flex space-x-2">
+          <input
+            type="number"
+            id="anchoPliego"
+            name="anchoPliego"
+            placeholder="Ancho"
+            value={dimensiones.anchoPliego}
+            onChange={handleInputChange}
+            className="w-1/2 p-2 border rounded-md"
+          />
+          <span className="text-xl">x</span>
+          <input
+            type="number"
+            id="altoPliego"
+            name="altoPliego"
+            placeholder="Alto"
+            value={dimensiones.altoPliego}
+            onChange={handleInputChange}
+            className="w-1/2 p-2 border rounded-md"
+          />
+        </div>
       </div>
-      <div>
-        <label htmlFor="anchoTarjeta">Dimensiones de la Tarjeta (mm):</label>
-        <input
-          type="number"
-          id="anchoTarjeta"
-          name="anchoTarjeta"
-          placeholder="Ancho"
-          value={dimensiones.anchoTarjeta}
-          onChange={handleInputChange}
-        />
-        x
-        <input
-          type="number"
-          id="altoTarjeta"
-          name="altoTarjeta"
-          placeholder="Alto"
-          value={dimensiones.altoTarjeta}
-          onChange={handleInputChange}
-        />
+      <div className="mb-4">
+        <label htmlFor="anchoTarjeta" className="block mb-2">
+          Dimensiones de la Tarjeta (mm):
+        </label>
+        <div className="flex space-x-2">
+          <input
+            type="number"
+            id="anchoTarjeta"
+            name="anchoTarjeta"
+            placeholder="Ancho"
+            value={dimensiones.anchoTarjeta}
+            onChange={handleInputChange}
+            className="w-1/2 p-2 border rounded-md"
+          />
+          <span className="text-xl">x</span>
+          <input
+            type="number"
+            id="altoTarjeta"
+            name="altoTarjeta"
+            placeholder="Alto"
+            value={dimensiones.altoTarjeta}
+            onChange={handleInputChange}
+            className="w-1/2 p-2 border rounded-md"
+          />
+        </div>
       </div>
-      <div>
-        <label htmlFor="sangreTarjeta">Sangre en la Tarjeta (mm):</label>
+      <div className="mb-4">
+        <label htmlFor="sangreTarjeta" className="block mb-2">
+          Sangre en la Tarjeta (mm):
+        </label>
         <input
           type="number"
           id="sangreTarjeta"
@@ -156,10 +173,13 @@ function CalculadoraPliegos({
           placeholder="Sangre"
           value={dimensiones.sangreTarjeta}
           onChange={handleInputChange}
+          className="w-1/2 p-2 border rounded-md"
         />
       </div>
-      <div>
-        <label htmlFor="medidaAdicional">Medida Adicional al Pliego (mm):</label>
+      <div className="mb-4">
+        <label htmlFor="medidaAdicional" className="block mb-2">
+          Medida Adicional al Pliego (mm):
+        </label>
         <input
           type="number"
           id="medidaAdicional"
@@ -167,11 +187,15 @@ function CalculadoraPliegos({
           placeholder="Medida Adicional"
           value={dimensiones.medidaAdicional}
           onChange={handleInputChange}
+          className="w-1/2 p-2 border rounded-md"
         />
       </div>
-      <button onClick={handleCalcularClick}>Calcular</button>
-            {error && <p>Debe rellenar todos los campos.</p>}
-
+      <button
+        onClick={handleCalcularClick}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Calcular
+      </button>
+      {error && <p className="text-red-500">Debe rellenar todos los campos.</p>}
       {mostrarResultados && !error && (
         <div>
           <p>Resultado Horizontal: {resultadoHorizontal} tarjetas</p>
@@ -179,6 +203,7 @@ function CalculadoraPliegos({
         </div>
       )}
     </div>
+
   );
 }
 

@@ -15,14 +15,23 @@ function CalculadoraPliegosNecesarios({ resultadoHorizontal, resultadoVertical, 
     } else if (modoCalculo === 'vertical' && !isNaN(resultadoV) && resultadoV !== 0) {
       setPliegosNecesarios(Math.ceil(cantidadTarjetas / resultadoV));
     }
+  }, [cantidadTarjetas, modoCalculo, resultadoHorizontal, resultadoVertical]);
 
-    // Llama a la función para actualizar "pliegosNecesarios"
-    if (onPliegosNecesariosChange) {
-      onPliegosNecesariosChange(pliegosNecesarios);
+  useEffect(() => {
+    const resultadoH = Number(resultadoHorizontal);
+    const resultadoV = Number(resultadoVertical);
+  
+    if (modoCalculo === 'horizontal' && !isNaN(resultadoH) && resultadoH !== 0) {
+      const nuevosPliegosNecesarios = Math.ceil(cantidadTarjetas / resultadoH);
+      setPliegosNecesarios(nuevosPliegosNecesarios);
+      onPliegosNecesariosChange(nuevosPliegosNecesarios);
+    } else if (modoCalculo === 'vertical' && !isNaN(resultadoV) && resultadoV !== 0) {
+      const nuevosPliegosNecesarios = Math.ceil(cantidadTarjetas / resultadoV);
+      setPliegosNecesarios(nuevosPliegosNecesarios);
+      onPliegosNecesariosChange(nuevosPliegosNecesarios);
     }
-  }, [cantidadTarjetas, modoCalculo, resultadoHorizontal, resultadoVertical, onPliegosNecesariosChange, pliegosNecesarios]);
-
-
+  }, [cantidadTarjetas, modoCalculo, resultadoHorizontal, resultadoVertical, onPliegosNecesariosChange]);
+  
   return (
     <div>
       <h1>Calculadora de Pliegos y Pliegos Necesarios</h1>

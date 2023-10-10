@@ -33,10 +33,21 @@ function App() {
     setPliegosNecesarios(nuevosPliegosNecesarios);
   };
 
-  // Función para actualizar costos desde ComponenteDeCostos
-  const actualizarCostos = (nuevosCostos) => {
-    setCostos(nuevosCostos);
-  };
+// Función para actualizar costos desde ComponenteDeCostos
+const actualizarCostos = nuevosCostos => {
+  setCostos(prevCostos => {
+    if (
+      prevCostos.costoTotalTinta !== nuevosCostos.costoTotalTinta ||
+      prevCostos.costoTotalPapel !== nuevosCostos.costoTotalPapel ||
+      prevCostos.costoTotalLaminado !== nuevosCostos.costoTotalLaminado
+    ) {
+      return nuevosCostos;
+    }
+    // Si no, devolver el estado anterior para evitar un renderizado innecesario
+    return prevCostos;
+  });
+};
+
 
   return (
     <div className="App">

@@ -12,20 +12,22 @@ function ComponenteDeCostos({ pliegosNecesarios, onCostosChange }) {
       const costoTotalTinta = isNaN(costoTinta) ? 0 : pliegosNecesarios * costoTinta;
       const costoTotalPapel = isNaN(costoPapel) ? 0 : pliegosNecesarios * costoPapel;
       const costoTotalLaminado = isNaN(costoLaminado) ? 0 : pliegosNecesarios * costoLaminado;
-
-      return {
+    
+      const nuevosCostos = {
         costoTotalTinta,
         costoTotalPapel,
         costoTotalLaminado,
       };
+    
+      if (onCostosChange) {
+        onCostosChange(nuevosCostos);
+      }
     };
-
-    const nuevosCostos = calcularCostos();
-
-    if (onCostosChange) {
-      onCostosChange(nuevosCostos);
-    }
+    
+    calcularCostos();
   }, [costoTinta, costoPapel, costoLaminado, pliegosNecesarios, onCostosChange]);
+  
+  
 
   const handleInputChange = (e, setter) => {
     const value = parseFloat(e.target.value);
