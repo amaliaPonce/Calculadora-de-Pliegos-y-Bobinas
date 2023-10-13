@@ -1,17 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {
-      fontFamily: {
-        custom: ['Montserrat', 'sans'], // Ejemplo de tipografía personalizada
-      },
-      colors: {
-        custom: {
-          primary: '#FF5733', // Ejemplo de color personalizado
-        },
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }

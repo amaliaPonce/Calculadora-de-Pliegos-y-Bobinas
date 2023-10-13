@@ -1,0 +1,33 @@
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+  }
+  
+  .nav-link {
+    background-color: #4a90e2;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    padding: 5rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    margin: 1rem;
+    flex: 1;
+    transition: all 0.3s;
+  }
+  
+  /* Media Query para dispositivos móviles */
+  @media (max-width: 768px) {
+    .nav-link {
+      width: 100%;
+    }
+  }
+  

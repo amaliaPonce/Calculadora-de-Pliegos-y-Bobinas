@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import '../App.css';
-import '../index.css'
-
+import { useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
+import "../../App.css";
+import "../../index.css";
+import BackButton from "../nav/BackButton";
 
 function CalculadoraPliegos({
   onResultadosActualizados,
@@ -10,12 +10,12 @@ function CalculadoraPliegos({
   resultadoVertical,
 }) {
   const [dimensiones, setDimensiones] = useState({
-    anchoPliego: '',
-    altoPliego: '',
-    anchoTarjeta: '',
-    altoTarjeta: '',
-    sangreTarjeta: '',
-    medidaAdicional: '',
+    anchoPliego: "",
+    altoPliego: "",
+    anchoTarjeta: "",
+    altoTarjeta: "",
+    sangreTarjeta: "",
+    medidaAdicional: "",
   });
 
   const [mostrarResultados, setMostrarResultados] = useState(false);
@@ -43,12 +43,12 @@ function CalculadoraPliegos({
     } = dimensiones;
 
     if (
-      anchoPliego === '' ||
-      altoPliego === '' ||
-      anchoTarjeta === '' ||
-      altoTarjeta === '' ||
-      sangreTarjeta === '' ||
-      medidaAdicional === ''
+      anchoPliego === "" ||
+      altoPliego === "" ||
+      anchoTarjeta === "" ||
+      altoTarjeta === "" ||
+      sangreTarjeta === "" ||
+      medidaAdicional === ""
     ) {
       return;
     }
@@ -77,7 +77,8 @@ function CalculadoraPliegos({
     const tarjetasPorAltoVertical = Math.floor(
       altoPliegoRestado / (anchoTarjetaNum + 2 * sangreTarjetaNum)
     );
-    const totalTarjetasVertical = tarjetasPorAnchoVertical * tarjetasPorAltoVertical;
+    const totalTarjetasVertical =
+      tarjetasPorAnchoVertical * tarjetasPorAltoVertical;
 
     onResultadosActualizados(totalTarjetasHorizontal, totalTarjetasVertical);
   }, [onResultadosActualizados, dimensiones]);
@@ -85,12 +86,12 @@ function CalculadoraPliegos({
   const handleCalcularClick = () => {
     // Verificar si alguno de los campos requeridos está vacío
     if (
-      dimensiones.anchoPliego === '' ||
-      dimensiones.altoPliego === '' ||
-      dimensiones.anchoTarjeta === '' ||
-      dimensiones.altoTarjeta === '' ||
-      dimensiones.sangreTarjeta === '' ||
-      dimensiones.medidaAdicional === ''
+      dimensiones.anchoPliego === "" ||
+      dimensiones.altoPliego === "" ||
+      dimensiones.anchoTarjeta === "" ||
+      dimensiones.altoTarjeta === "" ||
+      dimensiones.sangreTarjeta === "" ||
+      dimensiones.medidaAdicional === ""
     ) {
       // Mostrar el mensaje de error
       setError(true);
@@ -105,14 +106,20 @@ function CalculadoraPliegos({
 
   useEffect(() => {
     calcularTarjetasEnPliego();
-  },);
+  }, [calcularTarjetasEnPliego]);
   
+
   return (
+    <>
+    <BackButton/>
+    
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Calculadora de Tarjetas en Pliego</h1>
+      <h1 className="text-5xl font-bold mb-6">
+      Pliegos
+      </h1>
       <div className="mb-4">
         <label htmlFor="anchoPliego" className="block mb-2">
-          Dimensiones del Pliego (mm):
+          Dimensiones del pliego (mm):
         </label>
         <div className="flex space-x-2">
           <input
@@ -122,7 +129,7 @@ function CalculadoraPliegos({
             placeholder="Ancho"
             value={dimensiones.anchoPliego}
             onChange={handleInputChange}
-            className="w-1/2 p-2 border rounded-md"
+            className="w-full p-3 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 text-gray-700 shadow-sm"
           />
           <span className="text-xl">x</span>
           <input
@@ -132,13 +139,13 @@ function CalculadoraPliegos({
             placeholder="Alto"
             value={dimensiones.altoPliego}
             onChange={handleInputChange}
-            className="w-1/2 p-2 border rounded-md"
+            className="w-full p-3 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 text-gray-700 shadow-sm"
           />
         </div>
       </div>
       <div className="mb-4">
         <label htmlFor="anchoTarjeta" className="block mb-2">
-          Dimensiones de la Tarjeta (mm):
+          Dimensiones de la tarjeta (mm):
         </label>
         <div className="flex space-x-2">
           <input
@@ -148,7 +155,7 @@ function CalculadoraPliegos({
             placeholder="Ancho"
             value={dimensiones.anchoTarjeta}
             onChange={handleInputChange}
-            className="w-1/2 p-2 border rounded-md"
+            className="w-full p-3 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 text-gray-700 shadow-sm"
           />
           <span className="text-xl">x</span>
           <input
@@ -158,13 +165,13 @@ function CalculadoraPliegos({
             placeholder="Alto"
             value={dimensiones.altoTarjeta}
             onChange={handleInputChange}
-            className="w-1/2 p-2 border rounded-md"
+            className="w-full p-3 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 text-gray-700 shadow-sm"
           />
         </div>
       </div>
       <div className="mb-4">
         <label htmlFor="sangreTarjeta" className="block mb-2">
-          Sangre en la Tarjeta (mm):
+          Sangre en la tarjeta (mm):
         </label>
         <input
           type="number"
@@ -173,12 +180,12 @@ function CalculadoraPliegos({
           placeholder="Sangre"
           value={dimensiones.sangreTarjeta}
           onChange={handleInputChange}
-          className="w-1/2 p-2 border rounded-md"
+          className="w-full p-3 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 text-gray-700 shadow-sm"
         />
       </div>
       <div className="mb-4">
         <label htmlFor="medidaAdicional" className="block mb-2">
-          Medida Adicional al Pliego (mm):
+          Margen adicional al pliego (mm):
         </label>
         <input
           type="number"
@@ -187,23 +194,34 @@ function CalculadoraPliegos({
           placeholder="Medida Adicional"
           value={dimensiones.medidaAdicional}
           onChange={handleInputChange}
-          className="w-1/2 p-2 border rounded-md"
+          className="w-full p-3 rounded-lg border border-blue-400 focus:outline-none focus:border-blue-600 text-gray-700 shadow-sm"
         />
       </div>
       <button
         onClick={handleCalcularClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+      >
         Calcular
       </button>
       {error && <p className="text-red-500">Debe rellenar todos los campos.</p>}
       {mostrarResultados && !error && (
         <div>
-          <p>Resultado Horizontal: {resultadoHorizontal} tarjetas</p>
-          <p>Resultado Vertical: {resultadoVertical} tarjetas</p>
+          <div className="mb-4 mt-6">
+            <p className="text-gray-600 mt-2">Resultado Horizontal:</p>
+            <p className="text-blue-600 text-l font-bold">
+              {resultadoHorizontal} tarjetas
+            </p>
+          </div>
+          <div className="mb-4">
+            <p className="text-gray-600 mt-2">Resultado Vertical:</p>
+            <p className="text-blue-600 text-l font-bold">
+              {resultadoVertical} tarjetas
+            </p>
+          </div>
         </div>
       )}
     </div>
-
+    </>
   );
 }
 
