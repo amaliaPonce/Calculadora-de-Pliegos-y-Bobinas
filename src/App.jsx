@@ -6,7 +6,9 @@ import ComponenteDeCostos from "./components/pliegos/ComponenteDeCostos";
 import ComponenteDeSumaTotal from "./components/pliegos/ComponenteDeSumaTotal";
 import ComponenteNav from "./components/nav/ComponenteNav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CalculadoraBobinas from './components/bobinas/CalculadoraBobinas'
+import CalculadoraBobinas from "./components/bobinas/CalculadoraBobinas";
+import Tickets from "./components/tickets/Tickets";
+import Copiativos from "./components/copiativos/Copiativos";
 function App() {
   const [resultadoHorizontal, setResultadoHorizontal] = useState(0);
   const [resultadoVertical, setResultadoVertical] = useState(0);
@@ -83,6 +85,8 @@ function App() {
               </>
             }
           />
+          <Route path="/tickets" element={<Tickets />} />
+          <Route path="/copiativos" element={<Copiativos />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -38,3 +38,25 @@ Los archivos optimizados quedarán en la carpeta `dist/`.
 
 Al iniciar la aplicación se muestra un menú con enlaces a cada calculadora.
 
+
+## Pruebas y linting
+
+Para ejecutar ESLint y asegurar el formateo correcto del código:
+
+```bash
+npm run lint
+```
+
+Si se añaden pruebas con Vitest, pueden ejecutarse con:
+
+```bash
+npm test
+```
+
+## Configuración inicial
+
+Antes de levantar el servidor o compilar el proyecto por primera vez recuerda instalar las dependencias:
+
+```bash
+npm install
+```
